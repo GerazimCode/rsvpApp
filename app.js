@@ -18,11 +18,16 @@ function createLI(text){
     label.appendChild(checkbox);
     li.appendChild(label);
 
+    // create an edit button to the list item
+    let editButton = document.createElement("button");
+    editButton.textContent = "edit";
+    li.appendChild(editButton);
+
     // add a romove button to each list item
-    let button = document.createElement("button");
-    button.textContent = "Remove";
-    li.appendChild(button);
-    
+    let removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    li.appendChild(removeButton);
+
     return li;
 }
 
