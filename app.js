@@ -12,6 +12,14 @@ form.addEventListener('submit', (event)=> {
     let ul = document.getElementById("invitedList");
     let li = document.createElement("li");
     li.textContent = text;
+
+    // add a checkbox below the person's name to check when they have confirmed their arrival
+    let label = document.createElement("label");
+    label.textContent = "Confirmed";
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    label.appendChild(checkbox);
+    li.appendChild(label);
     // append the li to the UL
     ul.appendChild(li);
 
