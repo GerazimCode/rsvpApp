@@ -4,12 +4,9 @@ let form = document.getElementById("registrar");
 let input = document.querySelector("input");
 let ul = document.getElementById("invitedList");
 
-// add a submit eventlistener to the form
-form.addEventListener('submit', (event)=> {
-    event.preventDefault();
-    // adding text to the list items
-    let text = input.value;
-    input.value = '';
+
+// creates the li for program
+function createLI(text){
     let li = document.createElement("li");
     li.textContent = text;
 
@@ -25,6 +22,19 @@ form.addEventListener('submit', (event)=> {
     let button = document.createElement("button");
     button.textContent = "Remove";
     li.appendChild(button);
+    
+    return li;
+}
+
+// add a submit eventlistener to the form
+form.addEventListener('submit', (event)=> {
+    event.preventDefault();
+    // adding text to the list items
+    let text = input.value;
+    input.value = '';
+
+    // calls the createLI function
+    let li = createLI(text)
 
     // append the li to the UL
     ul.appendChild(li);
@@ -43,4 +53,13 @@ ul.addEventListener("change", (event) => {
         listItem.className = "";
     }
 
+})
+
+// the eventListeneer that will remove the name
+ul.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON"){
+        let li = e.target.parentNode;
+        let ul = li.parentNode;
+        ul.removeChild(li);
+    }
 })
