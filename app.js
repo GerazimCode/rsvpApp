@@ -16,6 +16,29 @@ div.appendChild(filterLabel);
 div.appendChild(filterCheckBox);
 mainDiv.insertBefore(div, ul);
 
+// event lister for the filter checkbox for its functionalities.
+filterCheckBox.addEventListener("change", (e)=> {
+    let isChecked = e.target.checked;
+    let lis = ul.children;
+    if (isChecked){
+        // loop through the list items
+        for(let i=0; i< lis.length; i++){
+            let li = lis[i]
+
+            if(li.className === "responded"){
+                li.style.display = "";
+            }else{
+                li.style.display = "none";
+            }
+        }
+    }else {
+        for(let i=0; i< lis.length; i++){
+            let li = lis[i];
+            li.style.display = "";
+        }
+    }
+})
+
 // creates the li for program
 function createLI(text){
     let li = document.createElement("li");
