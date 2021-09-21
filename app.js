@@ -2,13 +2,26 @@
 
 let form = document.getElementById("registrar");
 let input = document.querySelector("input");
+let mainDiv = document.querySelector(".main");
 let ul = document.getElementById("invitedList");
 
+// creating the filter label to check for those that have or have not responded
+let div = document.createElement("div");
+let filterLabel = document.createElement("label");
+let filterCheckBox = document.createElement("input");
+
+filterLabel.textContent = "Hide those who have not responded";
+filterCheckBox.type = "checkbox";
+div.appendChild(filterLabel);
+div.appendChild(filterCheckBox);
+mainDiv.insertBefore(div, ul);
 
 // creates the li for program
 function createLI(text){
     let li = document.createElement("li");
-    li.textContent = text;
+    let span = document.createElement("span");
+    span.textContent = text;
+    li.appendChild(span);
 
     // add a checkbox below the person's name to check when they have confirmed their arrival
     let label = document.createElement("label");
@@ -63,8 +76,26 @@ ul.addEventListener("change", (event) => {
 // the eventListeneer that will remove the name
 ul.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON"){
+        let button = e.target;
         let li = e.target.parentNode;
         let ul = li.parentNode;
+        if (button.textContent === "Remove"){
         ul.removeChild(li);
+        } else if(button.textContent === "edit"){
+            let span = li.firstElementChild;
+            let input = document.createElement("input");
+            input.type = "text";
+            input.value = span.textContent;
+            li.insertBefore(input, span);
+            li.removeChild(span);
+            button.textContent = "save";
+        }else if(button.textContent === "save"){
+            let input = li.firstElementChild;
+            let span = document.createElement("span");
+            span.textContent = input.value;
+            li.insertBefore(span, input);
+            li.removeChild(input);
+            button.textContent = "edit";
+        }
     }
 })
