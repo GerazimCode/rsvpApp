@@ -1,5 +1,4 @@
 // access the form and input elements
-
 let form = document.getElementById("registrar");
 let input = document.querySelector("input");
 let mainDiv = document.querySelector(".main");
@@ -16,7 +15,7 @@ div.appendChild(filterLabel);
 div.appendChild(filterCheckBox);
 mainDiv.insertBefore(div, ul);
 
-// event lister for the filter checkbox for its functionalities.
+// eventlistiner for the filter checkbox for its functionalities.
 filterCheckBox.addEventListener("change", (e)=> {
     let isChecked = e.target.checked;
     let lis = ul.children;
